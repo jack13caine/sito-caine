@@ -1,0 +1,38 @@
+'use client';
+
+import { useChat } from 'ai/react';
+
+export default function ChatCaine() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
+
+  return (
+    <div style={{ maxWidth: '600px', margin: '50px auto', padding: '20px', border: '2px solid #ff0055', borderRadius: '10px', boxShadow: '0 0 20px #ff0055' }}>
+      <h1 style={{ textAlign: 'center', color: '#ffea00', textTransform: 'uppercase' }}>🎪 Il Circo di Caine 🎪</h1>
+
+      <div style={{ height: '400px', overflowY: 'scroll', borderBottom: '1px solid #333', marginBottom: '20px', padding: '10px' }}>
+        {messages.map(m => (
+          <div key={m.id} style={{ margin: '15px 0', textAlign: m.role === 'user' ? 'right' : 'left' }}>
+            <span style={{ fontWeight: 'bold', color: m.role === 'user' ? '#00ffff' : '#ffea00' }}>
+              {m.role === 'user' ? 'Tu: ' : 'Caine: '}
+            </span>
+            <p style={{ display: 'inline-block', background: m.role === 'user' ? '#222' : '#311', padding: '8px 12px', borderRadius: '8px', margin: '5px 0' }}>
+              {m.content}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px' }}>
+        <input
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Chiedi qualcosa a Caine..."
+          style={{ flexGrow: 1, padding: '10px', borderRadius: '5px', border: 'none', background: '#222', color: '#fff' }}
+        />
+        <button type="submit" style={{ padding: '10px 20px', background: '#ff0055', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>
+          Invia
+        </button>
+      </form>
+    </div>
+  );
+}
