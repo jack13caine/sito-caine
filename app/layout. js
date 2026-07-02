@@ -1,0 +1,9 @@
+export default function RootLayout({ children }) {
+  return (
+    <html lang="it">
+      <body style={{ backgroundColor: '#12051c', color: '#fff', fontFamily: 'sans-serif', margin: 0 }}>
+        {children}
+      </body>
+    </html>
+  );
+}
